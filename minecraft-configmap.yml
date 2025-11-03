@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft-config
+data:
+  EULA: "TRUE"
+  TYPE: "PAPER" # Optional: Use the fast Paper server
+  MOTD: "My K3d Minecraft Server"
+  GAMEMODE: "survival"
