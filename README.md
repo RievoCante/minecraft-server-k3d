@@ -44,3 +44,17 @@ Edit `minecraft-configmap.yml` to change server settings (game mode, MOTD, serve
 ```bash
 k3d cluster delete minecraft
 ```
+
+## Start/Stop Server
+
+# Start
+
+```bash
+k3d cluster start minecraft-cluster
+```
+
+# Stop
+
+```bash
+k3d cluster stop minecraft-cluster
+```
