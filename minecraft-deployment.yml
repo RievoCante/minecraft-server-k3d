@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft-server
+  template:
+    metadata:
+      labels:
+        app: minecraft-server
+    spec:
+      containers:
+        - name: minecraft
+          image: itzg/minecraft-server # This image works on both Intel/AMD and Apple Silicon
+          ports:
+            - containerPort: 25565
+
+          envFrom:
+            - configMapRef:
+                name: minecraft-config # Loads all keys from ConfigMap as env variables
+
+          volumeMounts:
+            - name: minecraft-data
+              mountPath: /data
+
+      volumes:
+        - name: minecraft-data
+          persistentVolumeClaim:
+            claimName: minecraft-data-pvc # Attaches virtual hard drive

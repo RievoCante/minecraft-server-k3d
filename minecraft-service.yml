@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-service
+spec:
+  type: NodePort
+  ports:
+    - port: 25565
+      targetPort: 25565
+      nodePort: 30001 # This port matches my k3d create command
+      protocol: TCP
+  selector:
+    app: minecraft-server
